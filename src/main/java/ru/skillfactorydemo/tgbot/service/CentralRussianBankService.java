@@ -39,4 +39,8 @@ public class CentralRussianBankService extends WebServiceTemplate {
         return courses;
     }
 
+
+    public ValuteCursOnDate getCourseForCurrency(String code) throws DatatypeConfigurationException {
+        return getCurrenciesFromCbr().stream().filter(currency -> code.equals(currency.getChCode())).findFirst().get();
+    }
 }

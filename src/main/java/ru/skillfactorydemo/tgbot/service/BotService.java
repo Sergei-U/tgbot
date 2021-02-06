@@ -34,7 +34,7 @@ public class BotService extends TelegramLongPollingBot {
     private final FinanceService financeService;
     private final ActiveChatRepository activeChatRepository;
 
-    @Value("${bot.api.key}")
+    @Value("1424875278:AAFTZL_F1G2I9arZBowGq7h0DhvHL_9BKnI")
     private String apiKey;
 
     @Value("${bot.name}")
