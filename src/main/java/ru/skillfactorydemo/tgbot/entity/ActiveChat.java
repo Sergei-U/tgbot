@@ -1,9 +1,12 @@
 package ru.skillfactorydemo.tgbot.entity;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -20,4 +23,13 @@ public class ActiveChat {
     private Long chatId;
 
 
+    @Column(name = "DATE")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateStart;
+
+    @Column(name ="DATETIME")
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date dateTime;
 }

@@ -21,6 +21,7 @@ public class AppConfig {
 
     @Bean
     public CentralRussianBankService cbrService() throws SOAPException {
+
         CentralRussianBankService cbrService = new CentralRussianBankService();
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
         MessageFactory msgFactory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);

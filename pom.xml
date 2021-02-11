@@ -147,7 +147,11 @@
             <artifactId>spring-jdbc</artifactId>
             <version>5.3.3</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.2.2</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

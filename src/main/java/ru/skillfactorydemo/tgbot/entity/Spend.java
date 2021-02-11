@@ -2,9 +2,11 @@ package ru.skillfactorydemo.tgbot.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Table(name = "SPEND")
@@ -23,4 +25,14 @@ public class Spend {
     @Column(name = "SPEND")
     @ApiModelProperty(value = "BigDecimal расход денег")
     private BigDecimal spend;
+
+    @Column(name = "DATE")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateStart;
+
+    @Column(name ="DATETIME")
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date dateTime;
 }

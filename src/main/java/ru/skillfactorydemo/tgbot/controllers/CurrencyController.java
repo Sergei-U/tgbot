@@ -30,13 +30,13 @@ public class CurrencyController {
         return centralRussianBankService.getCourseForCurrency(code);
     }
 
-    @GetMapping("/getStats")
+    @GetMapping("/getStatsIncomes")
     @ApiOperation(value = "Получение количества пополнений, которые превышают определенную сумму")
     public int getStatsAboutIncomesThatGreater(@RequestParam(value = "amount")BigDecimal amount) {
         return statsService.getCountOfIncomesThatGreater(amount);
     }
 
-    @GetMapping("/getStatsSpeng")
+    @GetMapping("/getStatsSpend")
     @ApiOperation(value = "Получение количества расходных операций, которые превышают определенную сумму")
     public int getCountOfIncomesThatGreaterThanLongAmount(@RequestParam(value = "amount")Long amount) {
         return statsService.getCountOfIncomesThatGreaterThanLongAmount(amount);
