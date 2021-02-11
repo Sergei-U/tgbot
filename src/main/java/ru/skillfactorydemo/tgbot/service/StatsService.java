@@ -14,9 +14,13 @@ import java.math.BigDecimal;
 public class StatsService {
 
 
-            private final StatsRepository statsRepository;
+    private final StatsRepository statsRepository;
 
-            public int getCountOfIncomesThatGreater(BigDecimal amount) {
-                return statsRepository.getCountOfIncomesThatGreaterThan(amount);
-            }
+    public int getCountOfIncomesThatGreater(BigDecimal amount) {
+        return statsRepository.getCountOfIncomesThatGreaterThan(amount);
+    }
+
+    public int getCountOfIncomesThatGreaterThanLongAmount(Long amount){
+        return statsRepository.getCountOfIncomesThatGreaterThanLongAmount(amount);
+    }
 }

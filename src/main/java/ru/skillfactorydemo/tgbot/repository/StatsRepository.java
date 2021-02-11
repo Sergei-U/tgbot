@@ -25,17 +25,25 @@ public class StatsRepository {
     public int getCountOfIncomesThatGreaterThan(BigDecimal amount) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("amount", amount);
-       return namedParameterJdbcTemplate.queryForObject("SELECT count(*) FROM INCOME WHERE income > :amount",
-               parameters,
-               new StatsRowMapper());
+        return namedParameterJdbcTemplate.queryForObject("SELECT count(*) FROM INCOMES WHERE INCOME > :amount",
+                parameters,
+                new StatsRowMapper());
     }
 
     private static final class StatsRowMapper implements RowMapper<Integer> {
-
 
         @Override
         public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
             return resultSet.getInt("COUNT");
         }
     }
+
+    public int getCountOfIncomesThatGreaterThanLongAmount(Long amount) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("amount", amount);
+        return namedParameterJdbcTemplate.queryForObject("SELECT count(*) FROM SPEND WHERE SPEND > :amount",
+                parameters,
+                new StatsRowMapper());
+    }
 }
+
