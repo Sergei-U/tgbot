@@ -1,6 +1,5 @@
 package ru.skillfactorydemo.tgbot.entity;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

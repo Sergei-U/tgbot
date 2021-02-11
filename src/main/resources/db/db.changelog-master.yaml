@@ -1,0 +1,95 @@
+databaseChangeLog:
+   - changeSet:
+      id: 1
+      author: your_liquibase_username
+      changes:
+        - createTable:
+            tableName: ACTIVE_CHAT
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: CHAT_ID
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: DATE
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DATETIME
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+               - createTable:
+                   tableName: INCOMES
+                   columns:
+                     - column:
+                         name: id
+                         type: BIGINT
+                         autoIncrement: true
+                         constraints:
+                           primaryKey: true
+                           nullable: false
+                     - column:
+                         name: CHAT_ID
+                         type: varchar(100)
+                         constraints:
+                           unique: true
+                           nullable: false
+                     - column:
+                         name: INCOME
+                         type: varchar(100)
+                         constraints:
+                           unique: true
+                           nullable: false
+                     - column:
+                         name: DATE
+                         type: varchar(50)
+                         constraints:
+                           nullable: false
+                     - column:
+                         name: DATETIME
+                         type: varchar(50)
+                         constraints:
+                           nullable: false
+                     - createTable:
+                         tableName: SPEND
+                         columns:
+                           - column:
+                               name: id
+                               type: BIGINT
+                               autoIncrement: true
+                               constraints:
+                                 primaryKey: true
+                                 nullable: false
+                           - column:
+                               name: CHAT_ID
+                               type: varchar(100)
+                               constraints:
+                                 unique: true
+                                 nullable: false
+                           - column:
+                               name: SPEND
+                               type: varchar(100)
+                               constraints:
+                                 unique: true
+                                 nullable: false
+                           - column:
+                               name: DATE
+                               type: varchar(50)
+                               constraints:
+                                 nullable: false
+                           - column:
+                               name: DATETIME
+                               type: varchar(50)
+                               constraints:
+                                 nullable: false
