@@ -1,85 +1,55 @@
 databaseChangeLog:
-  - preConditions: null
-  - runningAs:
-      username: liquibase
   - changeSet:
-      id: 1
-      author: liquibase
-      changes:
-        - createTable:
-            tableName: ACTIVE_CHAT
-            columns:
-              - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: CHAT_ID
-                  type: INTEGER
-              - column:
-                  name: DATE
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: DATETIME
-                  type: varchar(50)
+      id: addColumn-example_1
+      author: liquibase-docs
+    changes:
+      - addColumn:
+        tableName: ACTIVE_CHAT
+        columns:
+          name: DATE
+          type: date
   - changeSet:
-      id: 1
-      author: liquibase
+      id: addColumn-example_2
+      author: liquibase-docs
       changes:
-        - createTable:
-            tableName: INCOMES
-            columns:
-              - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: CHAT_ID
-                  type: INTEGER
-              - column:
-                  name: DATE
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: DATETIME
-                  type: varchar(50)
-              - column:
-                  name: INCOME
-                  type: INTEGER
+        - addColumn:
+          tableName: ACTIVE_CHAT
+          columns:
+            name: DATETIME
+            type: date
   - changeSet:
-      id: 1
-      author: liquibase
+      id: addColumn-example_3
+      author: liquibase-docs
       changes:
-        - createTable:
-            tableName: SPEND
-            columns:
-              - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: CHAT_ID
-                  type: INTEGER
-              - column:
-                  name: DATE
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: DATETIME
-                  type: varchar(50)
-              - column:
-                  name: SPEND
-                  type: INTEGER
+        - addColumn:
+          tableName: INCOMES
+          columns:
+            name: DATE
+            type: date
+  - changeSet:
+    id: addColumn-example_4
+    author: liquibase-docs
+    changes:
+      - addColumn:
+        tableName: INCOMES
+        columns:
+          name: DATETIME
+          type: date
+  - changeSet:
+    id: addColumn-example_5
+    author: liquibase-docs
+    changes:
+      - addColumn:
+        tableName: SPEND
+        columns:
+          name: DATE
+          type: date
+  - changeSet:
+    id: addColumn-example_6
+    author: liquibase-docs
+    changes:
+      - addColumn:
+        tableName: SPEND
+        columns:
+          name: DATETIME
+          type: date
