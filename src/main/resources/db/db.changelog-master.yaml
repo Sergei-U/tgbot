@@ -1,55 +1,43 @@
 databaseChangeLog:
-  - changeSet:
-      id: addColumn-example_1
-      author: liquibase-docs
-    changes:
-      - addColumn:
-        tableName: ACTIVE_CHAT
-        columns:
-          name: DATE
-          type: date
-  - changeSet:
-      id: addColumn-example_2
-      author: liquibase-docs
-      changes:
-        - addColumn:
-          tableName: ACTIVE_CHAT
-          columns:
-            name: DATETIME
-            type: date
-  - changeSet:
-      id: addColumn-example_3
-      author: liquibase-docs
-      changes:
-        - addColumn:
-          tableName: INCOMES
-          columns:
-            name: DATE
-            type: date
-  - changeSet:
-    id: addColumn-example_4
-    author: liquibase-docs
-    changes:
-      - addColumn:
-        tableName: INCOMES
-        columns:
-          name: DATETIME
-          type: date
-  - changeSet:
-    id: addColumn-example_5
-    author: liquibase-docs
-    changes:
-      - addColumn:
-        tableName: SPEND
-        columns:
-          name: DATE
-          type: date
-  - changeSet:
-    id: addColumn-example_6
-    author: liquibase-docs
-    changes:
-      - addColumn:
-        tableName: SPEND
-        columns:
-          name: DATETIME
-          type: date
+  -  preConditions:
+  -  runningAs:
+       username:  postgrestgbot
+  -  changeSet:
+       id:  2
+       author:  sergeiu
+       changes:
+         -  addColumn:
+              tableName:  ACTIVE_CHAT
+              columns:
+                -  column:
+                     name:  DATE
+                     type:  DATE
+                - column:
+                    name: DATETIME
+                    type: DATE
+  -  changeSet:
+       id:  3
+       author:  sergeiu
+       changes:
+         -  addColumn:
+              tableName:  INCOMES
+              columns:
+                -  column:
+                     name:  DATE
+                     type:  DATE
+                - column:
+                    name: DATETIME
+                    type: DATE
+  -  changeSet:
+       id:  4
+       author:  sergeiu
+       changes:
+         -  addColumn:
+              tableName:  SPEND
+              columns:
+                -  column:
+                     name:  DATE
+                     type:  DATE
+                - column:
+                    name: DATETIME
+                    type: DATE
