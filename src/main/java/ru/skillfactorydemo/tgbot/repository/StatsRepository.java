@@ -45,5 +45,21 @@ public class StatsRepository {
                 parameters,
                 new StatsRowMapper());
     }
+
+    public int getCountOfIncomesThatGreaterThanAmountDate(BigDecimal amount) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("amount", amount);
+        return namedParameterJdbcTemplate.queryForObject("SELECT count(*) FROM INCOMES WHERE DATE > :amount",
+                parameters,
+                new StatsRowMapper());
+    }
+
+    public int getCountOfIncomesThatGreaterThanLongAmountThanDate(Long amount) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("amount", amount);
+        return namedParameterJdbcTemplate.queryForObject("SELECT count(*) FROM SPEND WHERE DATE > :amount",
+                parameters,
+                new StatsRowMapper());
+    }
 }
 

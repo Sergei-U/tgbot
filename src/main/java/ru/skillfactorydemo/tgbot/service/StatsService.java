@@ -23,4 +23,11 @@ public class StatsService {
     public int getCountOfIncomesThatGreaterThanLongAmount(Long amount){
         return statsRepository.getCountOfIncomesThatGreaterThanLongAmount(amount);
     }
+
+    public int getCountOfIncomesThatGreaterThatDate(BigDecimal amount) {
+        return statsRepository.getCountOfIncomesThatGreaterThanAmountDate(amount);
+    }
+    public int getCountOfIncomesThatGreaterThanLongAmountThanDate(Long amount) {
+        return statsRepository.getCountOfIncomesThatGreaterThanLongAmountThanDate(amount);
+    }
 }

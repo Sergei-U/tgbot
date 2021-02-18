@@ -42,4 +42,14 @@ public class CurrencyController {
         return statsService.getCountOfIncomesThatGreaterThanLongAmount(amount);
     }
 
+    @GetMapping("/getStatsIncomesDate")
+    @ApiOperation(value = "Получение количества пополнений, которые превышают определенную сумму за последние дни с фильтром")
+    public int getStatsAboutIncomesThatGreaterThanDate(@RequestParam(value = "amount")BigDecimal amount) {
+        return statsService.getCountOfIncomesThatGreaterThatDate(amount);
+    }
+    @GetMapping("/getStatsSpendDate")
+    @ApiOperation(value = "Получение количества расходных операций, которые превышают определенную сумму")
+    public int getCountOfIncomesThatGreaterThanLongAmountThanDate(@RequestParam(value = "amount")Long amount) {
+        return statsService.getCountOfIncomesThatGreaterThanLongAmountThanDate(amount);
+    }
 }
