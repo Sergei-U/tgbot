@@ -24,10 +24,10 @@ public class StatsService {
         return statsRepository.getCountOfIncomesThatGreaterThanLongAmount(amount);
     }
 
-    public int getCountOfIncomesThatGreaterThatDate(BigDecimal amount) {
-        return statsRepository.getCountOfIncomesThatGreaterThanAmountDate(amount);
-    }
-    public int getCountOfIncomesThatGreaterThanLongAmountThanDate(Long amount) {
-        return statsRepository.getCountOfIncomesThatGreaterThanLongAmountThanDate(amount);
-    }
+//    public int getCountOfIncomesThatGreaterThatDate(BigDecimal amount) {
+//        return statsRepository.getCountOfIncomesThatGreaterThanAmountDate(amount);
+//    }
+//    public int getCountOfIncomesThatGreaterThanLongAmountThanDate(Long amount) {
+//        return statsRepository.getCountOfIncomesThatGreaterThanLongAmountThanDate(amount);
+//    }
 }
