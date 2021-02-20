@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -29,10 +30,10 @@ public class Spend {
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateStart;
+    private LocalDate dateStart;
 
     @Column(name ="DATETIME")
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm")
-    private Date dateTime;
+    private LocalDate dateTime;
 }

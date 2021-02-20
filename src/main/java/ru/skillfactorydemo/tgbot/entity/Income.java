@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "INCOMES")
@@ -29,10 +29,10 @@ public class Income {
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateStart;
+    private LocalDate dateStart;
 
     @Column(name ="DATETIME")
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm")
-    private Date dateTime;
+    private LocalDate dateTime;
 }
