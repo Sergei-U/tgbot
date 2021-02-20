@@ -4,10 +4,11 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.skillfactorydemo.tgbot.dto.ValuteCursOnDate;
+import ru.skillfactorydemo.tgbot.entity.Income;
+import ru.skillfactorydemo.tgbot.entity.Spend;
 import ru.skillfactorydemo.tgbot.service.CentralRussianBankService;
 import ru.skillfactorydemo.tgbot.service.StatsService;
 
-import javax.xml.datatype.DatatypeConfigurationException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -43,14 +44,14 @@ public class CurrencyController {
     }
 
 
-//    @GetMapping("/getStatsIncomesDate")
-//    @ApiOperation(value = "Получение количества пополнений, которые превышают определенную сумму за последние дни с фильтром")
-//    public int getStatsAboutIncomesThatGreaterThanDate(@RequestParam(value = "amount")BigDecimal amount) {
-//        return statsService.getCountOfIncomesThatGreaterThatDate(amount);
-//    }
-//    @GetMapping("/getStatsSpendDate")
-//    @ApiOperation(value = "Получение количества расходных операций, которые превышают определенную сумму за последние дни с фильтром")
-//    public int getCountOfIncomesThatGreaterThanLongAmountThanDate(@RequestParam(value = "amount")Long amount) {
-//        return statsService.getCountOfIncomesThatGreaterThanLongAmountThanDate(amount);
-//    }
+    @GetMapping("/getStatsIncomesDate")
+    @ApiOperation(value = "Получение количества пополнений, которые превышают определенную сумму за последние дни с фильтром")
+    public List<Income> getStatsAboutIncomesThatGreaterThanDate(@RequestParam(value = "amount")BigDecimal amount) {
+        return statsService.getIncomeGreaterThan(amount);
+    }
+    @GetMapping("/getStatsSpendDate")
+    @ApiOperation(value = "Получение количества расходных операций, которые превышают определенную сумму за последние дни с фильтром")
+    public List<Spend> getCountOfIncomesThatGreaterThanLongAmountThanDate(@RequestParam(value = "amount")Long amount) {
+        return statsService.getSpendGreaterThan(amount);
+    }
 }

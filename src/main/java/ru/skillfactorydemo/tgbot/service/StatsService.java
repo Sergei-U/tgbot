@@ -48,7 +48,7 @@ public class StatsService {
                         .longValue() > amount.longValue())
                 .collect(Collectors.toList());
     }
-    public List<Spend> getSpendGreaterThan (BigDecimal amount) {
+    public List<Spend> getSpendGreaterThan (Long amount) {
         List<Spend> spends = spendRepository.findAll();
         return spends
                 .stream()
