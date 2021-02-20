@@ -1,0 +1,2 @@
+INSERT into INCOMES (ID, CHAT_ID, INCOME) values (1, 3, 123123);
+INSERT into SPEND (ID, CHAT_ID, SPEND) values (2, 5, 57575);
