@@ -23,7 +23,7 @@ class SpendRepositoryTest {
     public void testSpendData() {
         Optional<Spend> spend = spendRepository.findById(12345L);
         assertTrue(spend.isPresent());
-        assertEquals(new BigDecimal(57575), spend.get().getSpend());
+        assertEquals(new BigDecimal("57575.00"), spend.get().getSpend());
     }
 
 }

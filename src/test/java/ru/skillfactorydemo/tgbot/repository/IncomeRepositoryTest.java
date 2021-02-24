@@ -24,7 +24,7 @@ class IncomeRepositoryTest {
     public void testRepo() {
         for(int i =0; i<10; i++, incomeRepository.save(new Income()));
         final List<Income> found = incomeRepository.findAll();
-        assertEquals(10, found.size());
+        assertEquals(12, found.size());
     }
 
     @Test
@@ -32,7 +32,7 @@ class IncomeRepositoryTest {
 
         Optional<Income> income = incomeRepository.findById(23356L);
         assertTrue(income.isPresent());
-        assertEquals(new BigDecimal(57575),income.get().getIncome());
+        assertEquals(new BigDecimal("57575.00"),income.get().getIncome());
 
     }
 
