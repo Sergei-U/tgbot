@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import ru.skillfactorydemo.tgbot.repository.IncomeRepository;
 import ru.skillfactorydemo.tgbot.repository.SpendRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author Sergei Usov
  * @version 1.0.0
@@ -18,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FinanceServiceTestTwo {
-@InjectMocks
+    @InjectMocks
     private FinanceService financeService;
-@Mock
+    @Mock
     private SpendRepository spendRepository;
     @Mock
     private IncomeRepository incomeRepository;

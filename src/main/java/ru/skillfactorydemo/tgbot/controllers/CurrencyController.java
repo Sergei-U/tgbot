@@ -25,7 +25,7 @@ public class CurrencyController {
         return centralRussianBankService.getCurrenciesFromCbr();
     }
 
-    @RequestMapping("/getCurrentValuteOnCode/{code}")
+    @RequestMapping("/getCurrencies/{code}")
     @ApiOperation(value = "Курс определенной валюты по коду за день")
     public ValuteCursOnDate getCurrentValuteOnCode(@PathVariable String code) throws Exception {
         return centralRussianBankService.getCourseForCurrency(code);
