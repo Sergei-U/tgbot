@@ -1,43 +1,43 @@
 databaseChangeLog:
-  -  preConditions:
-  -  runningAs:
-       username:  postgrestgbot
-  -  changeSet:
-       id:  2
-       author:  sergeiu
-       changes:
-         -  addColumn:
-              tableName:  ACTIVE_CHAT
-              columns:
-                -  column:
-                     name:  DATE
-                     type:  DATE
-                - column:
-                    name: DATETIME
-                    type: DATE
-  -  changeSet:
-       id:  3
-       author:  sergeiu
-       changes:
-         -  addColumn:
-              tableName:  INCOMES
-              columns:
-                -  column:
-                     name:  DATE
-                     type:  DATE
-                - column:
-                    name: DATETIME
-                    type: DATE
-  -  changeSet:
-       id:  4
-       author:  sergeiu
-       changes:
-         -  addColumn:
-              tableName:  SPEND
-              columns:
-                -  column:
-                     name:  DATE
-                     type:  DATE
-                - column:
-                    name: DATETIME
-                    type: DATE
+  - preConditions:
+  - runningAs:
+      username: postgrestgbot
+  - changeSet:
+      id: 2
+      author: sergeiu
+      changes:
+        - addColumn:
+            tableName: ACTIVE_CHAT
+            columns:
+              - column:
+                  name: DATE
+                  type: DATE
+              - column:
+                  name: DATETIME
+                  type: DATE
+  - changeSet:
+      id: 3
+      author: sergeiu
+      changes:
+        - addColumn:
+            tableName: INCOMES
+            columns:
+              - column:
+                  name: DATE
+                  type: DATE
+              - column:
+                  name: DATETIME
+                  type: DATE
+  - changeSet:
+      id: 4
+      author: sergeiu
+      changes:
+        - addColumn:
+            tableName: SPEND
+            columns:
+              - column:
+                  name: DATE
+                  type: DATE
+              - column:
+                  name: DATETIME
+                  type: DATE

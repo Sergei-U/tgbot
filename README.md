@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/vrnsky/skillfactory_bot.svg?branch=master)](https://travis-ci.org/vrnsky/skillfactory_bot)
+[![Build Status](https://app.travis-ci.com/Sergei-U/tgbot.svg?branch=master)](https://app.travis-ci.com/github/Sergei-U/tgbot)
