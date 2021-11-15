@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/currencies")
 public class CurrencyController {
 
     private final CentralRussianBankService centralRussianBankService;
