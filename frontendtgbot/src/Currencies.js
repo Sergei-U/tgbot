@@ -17,30 +17,33 @@ class Currencies extends Component {
             .then(data => this.setState({currencies: data}));
     }
 
-    async remove(id) {
-        await fetch(`/clients/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(() => {
-            let updatedClients = [...this.state.clients].filter(i => i.id !== id);
-            this.setState({clients: updatedClients});
-        });
-    }
+    // async remove(id) {
+    //     await fetch(`/clients/${id}`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }).then(() => {
+    //         let updatedClients = [...this.state.clients].filter(i => i.id !== id);
+    //         this.setState({clients: updatedClients});
+    //     });
+    // }
 
     render() {
-        const {clients} = this.state;
+        const {currencies} = this.state;
 
-        const clientList = clients.map(client => {
-            return <tr key={client.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{client.name}</td>
-                <td>{client.email}</td>
+        const currenciesList = currencies.map(currenciess => {
+            return <tr key={currenciess.id}>
+                <td style={{whiteSpace: 'nowrap'}}>{currenciess.name}</td>
+                <td>{currenciess.nominal}</td>
+                <td>{currenciess.course}</td>
+                <td>{currenciess.code}</td>
+                <td>{currenciess.chCode}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/clients/" + client.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(client.id)}>Delete</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/currencies/" + currenciess.name}>Edit</Button>
+                        <Button size="sm" color="danger" onClick={() => this.remove(currencies.name)}>Delete</Button>
                     </ButtonGroup>
                 </td>
             </tr>
@@ -51,9 +54,9 @@ class Currencies extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/clients/new">Add Client</Button>
+                        <Button color="success" tag={Link} to="/currencies/new">Add currencies</Button>
                     </div>
-                    <h3>Clients</h3>
+                    <h3>Currencies</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
@@ -63,7 +66,7 @@ class Currencies extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {clientList}
+                        {currenciesList}
                         </tbody>
                     </Table>
                 </Container>
@@ -72,4 +75,4 @@ class Currencies extends Component {
     }
 }
 
-export default ClientList;
+export default Currencies;
