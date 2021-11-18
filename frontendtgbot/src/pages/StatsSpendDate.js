@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from "./AppNavbar";
 import { Link } from 'react-router-dom';
 
 
 class StatsSpendDate extends Component {
+
 
     constructor(props) {
         super(props);
@@ -19,7 +20,8 @@ class StatsSpendDate extends Component {
 
     render() {
         const {statsSpend} = this.state;
-
+        const [input, setInput] = useState('');
+        const [amount, setAmount] = useState('');
         const statsSpendList = statsSpend.map(statsSpend => {
             return <tr key={statsSpend.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{statsSpend.chatId}</td>
@@ -29,17 +31,20 @@ class StatsSpendDate extends Component {
             </tr>
         });
 
+
         return (
             <div>
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
                         <ButtonGroup>
-                        <Button color="success" tag={Link} to="/currencies/Currencies/{code}">getCurrencies by code</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsIncomes?amount={amount}">getStatsIncomes</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsSpend?amount={amount}">getStatsSpend</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsIncomesDate?amount={amount}">getStatsIncomesDate</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsSpendDate?amount={amount}">getStatsSpendDate</Button>
+                            <input value={input} onInput={e => setInput(e.target.value)}/>
+                        <Button color="success" tag={Link} to="/currencies/Currencies/"{input}>getCurrencies by code</Button>
+                            <input value={amount} onInput={e => setAmount(e.target.value)}/>
+                            <Button color="success" tag={Link} to="/currencies/StatsIncomes?amount="{amount}>getStatsIncomes</Button>
+                        <Button color="success" tag={Link} to="/currencies/StatsSpend?amount="{amount}>getStatsSpend</Button>
+                        <Button color="success" tag={Link} to="/currencies/StatsIncomesDate?amount="{amount}>getStatsIncomesDate</Button>
+                        <Button color="success" tag={Link} to="/currencies/StatsSpendDate?amount="{amount}>getStatsSpendDate</Button>
                         </ButtonGroup>
                         </div>
                     <h3>Currencies</h3>

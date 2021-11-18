@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from "./AppNavbar";
 import { Link } from 'react-router-dom';
 
-class Currencies extends Component {
+
+class Currencies extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {currencies: []};
+        this.md = new Remarkable();
+        this.codeChange = this.codeChange.bind(this);
+        this.amountChange = this.amountChange.bind(this);
     }
 
     componentDidMount() {
@@ -16,9 +20,21 @@ class Currencies extends Component {
             .then(data => this.setState({currencies: data}));
     }
 
+    codeChange(e) {
+        this.setState({ value: e.target.value });
+    }
+
+    amountChange(e) {
+        this.setState({ value: e.target.value });
+    }
+
+    getRawMarkup() {
+        return { __html: this.md.render(this.state.value) };
+    }
+
+
     render() {
         const {currencies} = this.state;
-
         const currenciesList = currencies.map(currencies => {
             return <tr key={currencies.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{currencies.name}</td>
@@ -29,18 +45,29 @@ class Currencies extends Component {
             </tr>
         });
 
+
+
         return (
             <div>
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
                         <ButtonGroup>
-                            <Button color="success" tag={Link} to="/currencies/Currencies/{code}">getCurrencies by code</Button>
-                            <textarea className="amount"></textarea>
-                            <Button color="success" tag={Link} to="/currencies/StatsIncomes?amount={amount}">getStatsIncomes</Button>
-                            <Button color="success" tag={Link} to="/currencies/StatsSpend?amount={amount}">getStatsSpend</Button>
-                            <Button color="success" tag={Link} to="/currencies/StatsIncomesDate?amount={amount}">getStatsIncomesDate</Button>
-                            <Button color="success" tag={Link} to="/currencies/StatsSpendDate?amount={amount}">getStatsSpendDate</Button>
+                            <textarea
+                                id="code-content"
+                                onChange={this.codeChange}
+                                defaultValue={this.state.value}
+                            />
+                            <Button color="success" tag={Link} to="/currencies/Currencies/"{this.getRawMarkup()}>getCurrencies by code</Button>
+                            <textarea
+                                id="amount-content"
+                                onChange={this.amountChange}
+                                defaultValue={this.state.value}
+                            />
+                            <Button color="success" tag={Link} to="/currencies/StatsIncomes?amount="{this.getRawMarkup()}>getStatsIncomes</Button>
+                            <Button color="success" tag={Link} to="/currencies/StatsSpend?amount="{this.getRawMarkup()}>getStatsSpend</Button>
+                            <Button color="success" tag={Link} to="/currencies/StatsIncomesDate?amount="{this.getRawMarkup()}>getStatsIncomesDate</Button>
+                            <Button color="success" tag={Link} to="/currencies/StatsSpendDate?amount="{this.getRawMarkup()}>getStatsSpendDate</Button>
                         </ButtonGroup>
                     </div>
                     <h3>Currencies</h3>
