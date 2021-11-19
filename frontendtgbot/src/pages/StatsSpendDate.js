@@ -1,7 +1,7 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from "./AppNavbar";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 class StatsSpendDate extends Component {
@@ -9,7 +9,23 @@ class StatsSpendDate extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {currencies: []};
+        this.state = {statsSpend: []};
+        this.handleCodeChange = this.handleCodeChange.bind(this);
+        this.handleCodeSubmit = this.handleCodeSubmit.bind(this);
+        this.handleAmountChange = this.handleAmountChange.bind(this);
+        this.handleAmountSubmit = this.handleAmountSubmit.bind(this);
+    }
+    handleCodeChange(event) {
+        this.setState({code: event.target.code});
+    }
+    handleCodeSubmit(event) {
+        event.preventDefault();
+    }
+    handleAmountChange(event) {
+        this.setState({amount: event.target.amount});
+    }
+    handleAmountSubmit(event) {
+        event.preventDefault();
     }
 
     componentDidMount() {
@@ -20,8 +36,6 @@ class StatsSpendDate extends Component {
 
     render() {
         const {statsSpend} = this.state;
-        const [input, setInput] = useState('');
-        const [amount, setAmount] = useState('');
         const statsSpendList = statsSpend.map(statsSpend => {
             return <tr key={statsSpend.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{statsSpend.chatId}</td>
@@ -38,13 +52,13 @@ class StatsSpendDate extends Component {
                 <Container fluid>
                     <div className="float-right">
                         <ButtonGroup>
-                            <input value={input} onInput={e => setInput(e.target.value)}/>
-                        <Button color="success" tag={Link} to="/currencies/Currencies/"{input}>getCurrencies by code</Button>
-                            <input value={amount} onInput={e => setAmount(e.target.value)}/>
-                            <Button color="success" tag={Link} to="/currencies/StatsIncomes?amount="{amount}>getStatsIncomes</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsSpend?amount="{amount}>getStatsSpend</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsIncomesDate?amount="{amount}>getStatsIncomesDate</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsSpendDate?amount="{amount}>getStatsSpendDate</Button>
+                            <input type="text" value={this.state.code} onChange={this.handleCodeChange} />
+                            <Button color="success" tag={Link} to={`/currencies/Currencies/${this.state.code}`}>getCurrencies by code</Button>
+                            <input type="number" step="0.1" value={this.state.amount} onChange={this.handleAmountChange} />
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomes</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpend</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomesDate</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpendDate</Button>
                         </ButtonGroup>
                         </div>
                     <h3>Currencies</h3>

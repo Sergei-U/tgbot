@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import { Button, Container, Table } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from "./AppNavbar";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 class StatsIncomes extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {currencies: []};
+        this.state = {statsIncomes: []};
+        this.handleCodeChange = this.handleCodeChange.bind(this);
+        this.handleCodeSubmit = this.handleCodeSubmit.bind(this);
+        this.handleAmountChange = this.handleAmountChange.bind(this);
+        this.handleAmountSubmit = this.handleAmountSubmit.bind(this);
     }
-
+    handleCodeChange(event) {
+        this.setState({code: event.target.code});
+    }
+    handleCodeSubmit(event) {
+        event.preventDefault();
+    }
+    handleAmountChange(event) {
+        this.setState({amount: event.target.amount});
+    }
+    handleAmountSubmit(event) {
+        event.preventDefault();
+    }
     componentDidMount() {
         fetch('/currencies/getStatsIncomes')
             .then(response => response.json())
             .then(data => this.setState({currencies: data}));
     }
+
 
     render() {
         const {statsIncomes} = this.state;
@@ -34,11 +50,15 @@ class StatsIncomes extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/currencies/Currencies/{code}">getCurrencies by code</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsIncomes">getStatsIncomes</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsSpend">getStatsSpend</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsIncomesDate">getStatsIncomesDate</Button>
-                        <Button color="success" tag={Link} to="/currencies/StatsSpendDate">getStatsSpendDate</Button>
+                        <ButtonGroup>
+                            <input type="text" value={this.state.code} onChange={this.handleCodeChange} />
+                            <Button color="success" tag={Link} to={`/currencies/Currencies/${this.state.code}`}>getCurrencies by code</Button>
+                            <input type="number" step="0.1" value={this.state.amount} onChange={this.handleAmountChange} />
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomes</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpend</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomesDate</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpendDate</Button>
+                        </ButtonGroup>
                     </div>
                     <h3>Currencies</h3>
                     <Table className="mt-4">

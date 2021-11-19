@@ -1,35 +1,25 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from "./AppNavbar";
-import { Link } from 'react-router-dom';
+import {Link} from "react-router-dom";
+import CurrenciesByCode from "./CurrenciesByCode";
+import StatsIncomes from "./StatsIncomes";
+import StatsSpend from "./StatsSpend";
+import StatsIncomesDate from "./StatsIncomesDate";
+import StatsSpendDate from "./StatsSpendDate";
 
 
-class Currencies extends React.Component {
+class Currencies extends Component {
 
     constructor(props) {
         super(props);
         this.state = {currencies: []};
-        this.md = new Remarkable();
-        this.codeChange = this.codeChange.bind(this);
-        this.amountChange = this.amountChange.bind(this);
     }
 
     componentDidMount() {
         fetch('/currencies/getCurrencies')
             .then(response => response.json())
             .then(data => this.setState({currencies: data}));
-    }
-
-    codeChange(e) {
-        this.setState({ value: e.target.value });
-    }
-
-    amountChange(e) {
-        this.setState({ value: e.target.value });
-    }
-
-    getRawMarkup() {
-        return { __html: this.md.render(this.state.value) };
     }
 
 
@@ -45,29 +35,19 @@ class Currencies extends React.Component {
             </tr>
         });
 
-
-
         return (
             <div>
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
                         <ButtonGroup>
-                            <textarea
-                                id="code-content"
-                                onChange={this.codeChange}
-                                defaultValue={this.state.value}
-                            />
-                            <Button color="success" tag={Link} to="/currencies/Currencies/"{this.getRawMarkup()}>getCurrencies by code</Button>
-                            <textarea
-                                id="amount-content"
-                                onChange={this.amountChange}
-                                defaultValue={this.state.value}
-                            />
-                            <Button color="success" tag={Link} to="/currencies/StatsIncomes?amount="{this.getRawMarkup()}>getStatsIncomes</Button>
-                            <Button color="success" tag={Link} to="/currencies/StatsSpend?amount="{this.getRawMarkup()}>getStatsSpend</Button>
-                            <Button color="success" tag={Link} to="/currencies/StatsIncomesDate?amount="{this.getRawMarkup()}>getStatsIncomesDate</Button>
-                            <Button color="success" tag={Link} to="/currencies/StatsSpendDate?amount="{this.getRawMarkup()}>getStatsSpendDate</Button>
+                            <input type="text" value={this.state.code} onChange={this.handleCodeChange} />
+                            <Button color="success" tag={Link} to={`/currencies/getCurrencies/${this.state.code}`}>getCurrencies by code</Button>
+                            <input type="number" step="0.1" value={this.state.amount} onChange={this.handleAmountChange} />
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomes</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpend</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomesDate</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpendDate</Button>
                         </ButtonGroup>
                     </div>
                     <h3>Currencies</h3>
