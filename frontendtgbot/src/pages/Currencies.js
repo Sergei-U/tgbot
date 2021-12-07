@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from "./AppNavbar";
 import {Link} from "react-router-dom";
-import CurrenciesByCode from "./CurrenciesByCode";
-import StatsIncomes from "./StatsIncomes";
-import StatsSpend from "./StatsSpend";
-import StatsIncomesDate from "./StatsIncomesDate";
-import StatsSpendDate from "./StatsSpendDate";
 
 
 class Currencies extends Component {

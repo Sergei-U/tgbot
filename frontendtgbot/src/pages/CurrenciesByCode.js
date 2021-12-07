@@ -52,12 +52,12 @@ class CurrenciesByCode extends Component {
                     <div className="float-right">
                         <ButtonGroup>
                             <input type="text" value={this.state.code} onChange={this.handleCodeChange} />
-                            <Button color="success" tag={Link} to={`/currencies/getCurrencies/${this.state.code}`}>getCurrencies by code</Button>
+                            <Button color="success" tag={Link} to={`/currencies/getCurrencies/${this.state.code}`}>get Currencies by code</Button>
                             <input type="number" step="0.1" value={this.state.amount} onChange={this.handleAmountChange} />
-                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomes</Button>
-                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpend</Button>
-                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsIncomesDate</Button>
-                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>getStatsSpendDate</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>get Stats Incomes</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>get Stats Spend</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>get Stats Incomes Date</Button>
+                            <Button color="success" tag={Link} to={`/currencies/StatsIncomes?amount=${this.state.amount}`}>get Stats Spend Date</Button>
                         </ButtonGroup>
                     </div>
                     <h3>Currencies</h3>
