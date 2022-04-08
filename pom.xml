@@ -3,6 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <java.version>11</java.version>
+        <testcontainers.version>1.15.0</testcontainers.version>
+        <base.dir>.</base.dir>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <node.version>v14.18.0</node.version>
+        <yarn.version>v1.12.1</yarn.version>
+        <spring-boot.version>2.4.4</spring-boot.version>
+        <h2.version>1.4.200</h2.version>
+        <javafaker.version>1.0.2</javafaker.version>
+    </properties>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -10,19 +24,23 @@
         <relativePath/>
     </parent>
 
-    <groupId>ru.skillfactorydemo</groupId>
+    <groupId>ru.demo</groupId>
     <artifactId>tgbot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tgbot</name>
     <description>Telegram bot for finance monitoring</description>
 
-    <properties>
-        <java.version>11</java.version>
-        <testcontainers.version>1.15.0</testcontainers.version>
-        <base.dir>.</base.dir>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>2.5.6</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -163,6 +181,82 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>frontendtgbot/build</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-maven-plugin.version}</version>
+                <configuration>
+                    <workingDirectory>frontendtgbot</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node</id>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <yarnVersion>${yarn.version}</yarnVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn install</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                    <execution>
+                        <id>yarn test</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>test</arguments>
+                            <environmentVariables>
+                                <CI>true</CI>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn build</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
