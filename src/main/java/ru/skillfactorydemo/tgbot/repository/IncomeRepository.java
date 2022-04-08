@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface IncomeRepository extends JpaRepository<Income, Long> {
 
-        List<Income> findByIncomeGreaterThan(BigDecimal bigDecimal);
+    List<Income> findByIncomeGreaterThan(BigDecimal bigDecimal);
 }

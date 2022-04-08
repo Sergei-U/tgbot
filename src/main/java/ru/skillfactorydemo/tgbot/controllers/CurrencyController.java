@@ -33,25 +33,26 @@ public class CurrencyController {
 
     @GetMapping("/getStatsIncomes")
     @ApiOperation(value = "Получение количества пополнений, которые превышают определенную сумму")
-    public int getStatsAboutIncomesThatGreater(@RequestParam(value = "amount")BigDecimal amount) {
+    public int getStatsAboutIncomesThatGreater(@RequestParam(value = "amount") BigDecimal amount) {
         return statsService.getCountOfIncomesThatGreater(amount);
     }
 
     @GetMapping("/getStatsSpend")
     @ApiOperation(value = "Получение количества расходных операций, которые превышают определенную сумму")
-    public int getCountOfIncomesThatGreaterThanLongAmount(@RequestParam(value = "amount")Long amount) {
+    public int getCountOfIncomesThatGreaterThanLongAmount(@RequestParam(value = "amount") Long amount) {
         return statsService.getCountOfIncomesThatGreaterThanLongAmount(amount);
     }
 
 
     @GetMapping("/getStatsIncomesDate")
     @ApiOperation(value = "Получение количества пополнений, которые превышают определенную сумму за последние дни с фильтром")
-    public List<Income> getStatsAboutIncomesThatGreaterThanDate(@RequestParam(value = "amount")BigDecimal amount) {
+    public List<Income> getStatsAboutIncomesThatGreaterThanDate(@RequestParam(value = "amount") BigDecimal amount) {
         return statsService.getIncomeGreaterThan(amount);
     }
+
     @GetMapping("/getStatsSpendDate")
     @ApiOperation(value = "Получение количества расходных операций, которые превышают определенную сумму за последние дни с фильтром")
-    public List<Spend> getCountOfIncomesThatGreaterThanLongAmountThanDate(@RequestParam(value = "amount")Long amount) {
+    public List<Spend> getCountOfIncomesThatGreaterThanLongAmountThanDate(@RequestParam(value = "amount") Long amount) {
         return statsService.getSpendGreaterThan(amount);
     }
 }

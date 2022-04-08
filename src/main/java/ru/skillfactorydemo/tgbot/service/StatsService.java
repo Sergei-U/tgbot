@@ -10,6 +10,7 @@ import ru.skillfactorydemo.tgbot.repository.StatsRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -28,7 +29,7 @@ public class StatsService {
         return statsRepository.getCountOfIncomesThatGreaterThan(amount);
     }
 
-    public int getCountOfIncomesThatGreaterThanLongAmount(Long amount){
+    public int getCountOfIncomesThatGreaterThanLongAmount(Long amount) {
         return statsRepository.getCountOfIncomesThatGreaterThanLongAmount(amount);
     }
 
@@ -39,7 +40,7 @@ public class StatsService {
 //        return statsRepository.getCountOfIncomesThatGreaterThanLongAmountThanDate(amount);
 //    }
 
-    public List<Income> getIncomeGreaterThan (BigDecimal amount) {
+    public List<Income> getIncomeGreaterThan(BigDecimal amount) {
         List<Income> incomes = incomeRepository.findAll();
         return incomes
                 .stream()
@@ -48,7 +49,9 @@ public class StatsService {
                         .longValue() > amount.longValue())
                 .collect(Collectors.toList());
     }
-    public List<Spend> getSpendGreaterThan (Long amount) {
+
+    public List<Spend> getSpendGreaterThan(Long amount) {
+        Optional<Double> optionalDouble = Optional.of(22.4d);
         List<Spend> spends = spendRepository.findAll();
         return spends
                 .stream()

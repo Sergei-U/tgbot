@@ -27,7 +27,7 @@ public class ActiveChat {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStart;
 
-    @Column(name ="DATETIME")
+    @Column(name = "DATETIME")
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm")
     private Date dateTime;
